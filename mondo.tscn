@@ -1,0 +1,37 @@
+[gd_scene format=4 uid="uid://emu03rakwc6l"]
+
+[ext_resource type="Script" uid="uid://wc7aj57q2y37" path="res://Scripts/character_body_2d.gd" id="1_uwo7n"]
+[ext_resource type="Texture2D" uid="uid://dycxsnhej0nfq" path="res://graybox.png" id="2_dteo8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bhunq"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_662ot"]
+texture = ExtResource("2_dteo8")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_bhunq"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_662ot")
+
+[node name="Mondo" type="Node2D" unique_id=503370499]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=2072437280]
+position = Vector2(42, 113)
+script = ExtResource("1_uwo7n")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1962413964]
+shape = SubResource("CapsuleShape2D_bhunq")
+
+[node name="NPC" type="CharacterBody2D" parent="." unique_id=1353453508]
+position = Vector2(241, 113)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC" unique_id=1338581349]
+shape = SubResource("CapsuleShape2D_bhunq")
+disabled = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1884363084]
+tile_map_data = PackedByteArray("AAAAAAgAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAoAAAAAAAAAAAABAAoAAAAAAAAAAAABAAkAAAAAAAAAAAABAAgAAAAAAAAAAAACAAgAAAAAAAAAAAADAAgAAAAAAAAAAAADAAkAAAAAAAAAAAACAAkAAAAAAAAAAAACAAoAAAAAAAAAAAADAAoAAAAAAAAAAAAEAAkAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAFAAkAAAAAAAAAAAAEAAoAAAAAAAAAAAAFAAoAAAAAAAAAAAAGAAoAAAAAAAAAAAAGAAkAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAoAAAAAAAAAAAAHAAkAAAAAAAAAAAAIAAoAAAAAAAAAAAAIAAkAAAAAAAAAAAAIAAgAAAAAAAAAAAAJAAkAAAAAAAAAAAAJAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAkAAAAAAAAAAAAJAAoAAAAAAAAAAAAKAAoAAAAAAAAAAAALAAkAAAAAAAAAAAALAAgAAAAAAAAAAAAMAAkAAAAAAAAAAAALAAoAAAAAAAAAAAAMAAoAAAAAAAAAAAANAAkAAAAAAAAAAAANAAgAAAAAAAAAAAAMAAgAAAAAAAAAAAAOAAkAAAAAAAAAAAANAAoAAAAAAAAAAAAOAAoAAAAAAAAAAAAPAAkAAAAAAAAAAAAPAAgAAAAAAAAAAAAOAAgAAAAAAAAAAAAQAAkAAAAAAAAAAAAPAAoAAAAAAAAAAAAQAAoAAAAAAAAAAAARAAkAAAAAAAAAAAARAAoAAAAAAAAAAAASAAkAAAAAAAAAAAARAAgAAAAAAAAAAAAQAAgAAAAAAAAAAAASAAoAAAAAAAAAAAASAAgAAAAAAAAAAAATAAgAAAAAAAAAAAATAAkAAAAAAAAAAAATAAoAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_bhunq")
