@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://d2d5y15ien3g8"]
+
+[ext_resource type="Script" uid="uid://bemhun2jwhfxd" path="res://scripts/sasaki_grid.gd" id="1_5ulc8"]
+[ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="2_eab0s"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h1via"]
+
+[node name="SasakiGrid" type="CharacterBody2D" unique_id=1821160280]
+script = ExtResource("1_5ulc8")
+cell_size = 100
+move_speed = 35.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=920677964]
+shape = SubResource("CapsuleShape2D_h1via")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1917137692]
+position = Vector2(92, 143)
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("2_eab0s")
