@@ -194,3 +194,18 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.7, 0.7)
 texture = SubResource("GradientTexture2D_g4v7s")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1823817805]
+custom_minimum_size = Vector2(75, 25)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -97.0
+offset_top = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+bbcode_enabled = true
+text = "[b][shake rate=20.0 level=5 connected=1]	Mash [/shake][/b][b][shake rate=20.0 level=10 connected=1]	E[/shake][/b]"
