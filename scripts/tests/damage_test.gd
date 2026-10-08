@@ -39,8 +39,4 @@ func _spawn_attack() -> void:
 	var cell := _mover.cell
 	if not aim_at_player:
 		cell = Vector2i(randi_range(0, grid.size.x - 1), randi_range(0, grid.size.y - 1))
-	var attack: CellAttack = CELL_ATTACK.instantiate()
-	attack.cell_size = grid.cell_size
-	attack.position = grid.cell_to_local(cell)
-	# attacks live under the grid too, so cell_to_local() is their position
-	grid.add_child(attack)
+	grid.spawn_attack(CELL_ATTACK, cell)

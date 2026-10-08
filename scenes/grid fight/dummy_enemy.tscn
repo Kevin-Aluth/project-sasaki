@@ -13,3 +13,4 @@ texture = ExtResource("1_icon")
 [node name="GridMover" type="Node" parent="."]
 script = ExtResource("2_mover")
 start_cell = Vector2i(5, 2)
+facing = Vector2i(-1, 0)

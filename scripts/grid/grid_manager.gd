@@ -58,6 +58,19 @@ func request_move(entity: Node2D, to: Vector2i) -> bool:
 	_occupants[to] = entity
 	return true
 
+## Spawns an attack scene (usually a CellAttack) centered on a cell.
+## Everything specific to the attack (damage, layer, timings) lives in the
+## scene itself. Returns null if the cell is off-grid.
+func spawn_attack(scene: PackedScene, cell: Vector2i) -> Node2D:
+	if not is_inside(cell):
+		return null
+	var attack: Node2D = scene.instantiate()
+	if attack is CellAttack:
+		attack.cell_size = cell_size
+	attack.position = cell_to_local(cell)
+	add_child(attack)
+	return attack
+
 func _draw() -> void:
 	var half := Vector2.ONE * cell_size * 0.5
 	for x in size.x:

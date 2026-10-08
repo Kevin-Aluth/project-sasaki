@@ -13,6 +13,9 @@ signal move_blocked(to: Vector2i, occupant: Node2D)
 ## If left empty, the body's parent is used (entities live under the grid).
 @export var grid: GridManager
 @export var start_cell: Vector2i = Vector2i(2, 2)
+## Direction the body faces, one of the 4 grid directions.
+## Attacks rotate their cell pattern towards it.
+@export var facing: Vector2i = Vector2i.RIGHT
 ## Lerp speed: higher = snappier movement.
 @export var move_speed: float = 15.0
 
