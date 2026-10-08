@@ -1,0 +1,196 @@
+[gd_scene format=3 uid="uid://cdk0yulwm6kqt"]
+
+[ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="1_b6kwt"]
+[ext_resource type="Script" uid="uid://cfgr5x81ax7ul" path="res://Scripts/versus_inteface.gd" id="1_itrqa"]
+[ext_resource type="Shader" uid="uid://xhbojt6wcckd" path="res://Shaders/versus_bar_fire.gdshader" id="2_itrqa"]
+[ext_resource type="Resource" uid="uid://id01miunulxs" path="res://Resources/test_enemy.tres" id="2_rkiaj"]
+[ext_resource type="Shader" uid="uid://cuff56r7nvonr" path="res://Shaders/background_blur.gdshader" id="3_isp74"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0u6y"]
+shader = ExtResource("3_isp74")
+shader_parameter/blur_amount = 3.6400001728999998
+
+[sub_resource type="Gradient" id="Gradient_rkiaj"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_avnxn"]
+gradient = SubResource("Gradient_rkiaj")
+width = 150
+height = 16
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_vod1p"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qssos"]
+gradient = SubResource("Gradient_vod1p")
+width = 150
+height = 16
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_isp74"]
+offsets = PackedFloat32Array(0, 0.20984456, 1)
+colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rkiaj"]
+gradient = SubResource("Gradient_isp74")
+width = 150
+height = 16
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_57qmd"]
+noise_type = 3
+fractal_lacunarity = 1.6
+fractal_weighted_strength = 0.48
+domain_warp_enabled = true
+domain_warp_frequency = 0.001
+domain_warp_fractal_lacunarity = 6.78
+domain_warp_fractal_gain = 0.035
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yf5fn"]
+noise = SubResource("FastNoiseLite_57qmd")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v7p76"]
+noise_type = 3
+frequency = 0.0156
+fractal_lacunarity = 1.945
+fractal_gain = 0.335
+fractal_weighted_strength = 0.38
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vod1p"]
+noise = SubResource("FastNoiseLite_v7p76")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
+shader = ExtResource("2_itrqa")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_yf5fn")
+shader_parameter/noise_texture2 = SubResource("NoiseTexture2D_vod1p")
+shader_parameter/edge_fade_out = 0.09
+shader_parameter/edge_fade_in = 0.9
+shader_parameter/emission = 1.75
+shader_parameter/time_scale = 0.765
+shader_parameter/light_color = Color(0.9999998, 0.7212091, 0.17312565, 1)
+shader_parameter/dark_color = Color(0.2742624, 0.114896245, 0.010483876, 1)
+
+[sub_resource type="Gradient" id="Gradient_itrqa"]
+offsets = PackedFloat32Array(0, 0.23798077, 0.50721157, 0.79086536, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g4v7s"]
+gradient = SubResource("Gradient_itrqa")
+width = 16
+height = 16
+fill_from = Vector2(0.22395833, 0.032986112)
+fill_to = Vector2(1, 0.17881945)
+
+[node name="Control" type="Control" unique_id=364816345]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_itrqa")
+enemy_resource = ExtResource("2_rkiaj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=456819954]
+material = SubResource("ShaderMaterial_d0u6y")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1200703227]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -577.5
+offset_top = -82.0
+offset_right = 577.5
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1407862103]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 18
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1332381301]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2" unique_id=1575314212]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 143
+
+[node name="Sasaki_Face" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1164132544]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_b6kwt")
+expand_mode = 2
+
+[node name="Enemy_Face" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=582746863]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_b6kwt")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1917716609]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ProgressBar2" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=609159636]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+value = 91.0
+texture_under = SubResource("GradientTexture2D_avnxn")
+texture_progress = SubResource("GradientTexture2D_qssos")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/MarginContainer/ProgressBar2" unique_id=862155127]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -4.0
+offset_right = 25.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 82.0
+texture_progress = SubResource("GradientTexture2D_rkiaj")
+
+[node name="ColorRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/ProgressBar2/ProgressBar" unique_id=491200613]
+visible = false
+material = SubResource("ShaderMaterial_g4v7s")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+texture = SubResource("GradientTexture2D_g4v7s")

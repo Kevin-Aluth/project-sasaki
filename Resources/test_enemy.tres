@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://id01miunulxs"]
+
+[ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="1_jy53r"]
+[ext_resource type="Script" uid="uid://dcn1dpkiy854r" path="res://Scripts/enemy_resource_script.gd" id="2_mru0m"]
+
+[resource]
+script = ExtResource("2_mru0m")
+enemy_name = "Test"
+enemy_sprite = ExtResource("1_jy53r")
+enemy_health = 10.0
+enemy_strength = 50
