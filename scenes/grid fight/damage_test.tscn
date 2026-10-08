@@ -1,0 +1,17 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/tests/damage_test.gd" id="1_test"]
+[ext_resource type="Script" path="res://scripts/grid/grid_manager.gd" id="2_grid"]
+[ext_resource type="PackedScene" uid="uid://d2d5y15ien3g8" path="res://scenes/grid fight/sasaki_grid.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scenes/grid fight/dummy_enemy.tscn" id="4_dummy"]
+
+[node name="DamageTest" type="Node2D"]
+script = ExtResource("1_test")
+
+[node name="GridManager" type="Node2D" parent="."]
+position = Vector2(200, 75)
+script = ExtResource("2_grid")
+
+[node name="Player" parent="GridManager" instance=ExtResource("3_player")]
+
+[node name="DummyEnemy" parent="GridManager" instance=ExtResource("4_dummy")]

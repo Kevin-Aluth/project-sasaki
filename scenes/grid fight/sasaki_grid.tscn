@@ -2,15 +2,20 @@
 
 [ext_resource type="Script" uid="uid://bemhun2jwhfxd" path="res://scripts/sasaki_grid.gd" id="1_5ulc8"]
 [ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="2_eab0s"]
+[ext_resource type="Script" uid="uid://ip262ml80i7i" path="res://scripts/components/health_component.gd" id="3_health"]
+[ext_resource type="Script" uid="uid://c7vqant014pyw" path="res://scripts/components/hurtbox_component.gd" id="4_hurtbox"]
+[ext_resource type="Script" path="res://scripts/components/grid_mover.gd" id="5_mover"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h1via"]
 radius = 26.0
 height = 54.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1l68p"]
+radius = 26.0
+height = 52.0
+
 [node name="SasakiGrid" type="CharacterBody2D" unique_id=1821160280]
 script = ExtResource("1_5ulc8")
-cell_size = 100
-move_speed = 35.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1917137692]
 scale = Vector2(0.44, 0.44)
@@ -18,3 +23,20 @@ texture = ExtResource("2_eab0s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=920677964]
 shape = SubResource("CapsuleShape2D_h1via")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=619853529]
+script = ExtResource("3_health")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=2117070639 node_paths=PackedStringArray("health")]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("4_hurtbox")
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=951646205]
+shape = SubResource("CapsuleShape2D_1l68p")
+
+[node name="GridMover" type="Node" parent="."]
+script = ExtResource("5_mover")
+move_speed = 35.0

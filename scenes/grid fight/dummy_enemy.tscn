@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="1_icon"]
+[ext_resource type="Script" path="res://scripts/components/grid_mover.gd" id="2_mover"]
+
+[node name="DummyEnemy" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.35, 0.35, 1)
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("1_icon")
+
+[node name="GridMover" type="Node" parent="."]
+script = ExtResource("2_mover")
+start_cell = Vector2i(5, 2)

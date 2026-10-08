@@ -1,20 +1,13 @@
 extends CharacterBody2D
 
-@export var cell_size: int = 64        
-@export var grid_max_x: int = 7       
-@export var grid_max_y: int = 5       
-@export var move_speed: float = 15.0   
+## Player controller: only reads input. Grid logic lives in GridManager,
+## movement in the GridMover component.
 
-@export var grid_position: Vector2i = Vector2i(2, 2)
+@onready var mover: GridMover = $GridMover
 
-var target_pixel_pos: Vector2
-var buffered_dir: Vector2i = Vector2.ZERO
+var buffered_dir: Vector2i = Vector2i.ZERO
 
-func _ready() -> void:
-	position = Vector2(grid_position) * cell_size
-	target_pixel_pos = position
-
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# save input inside a helper variable
 	if Input.is_action_just_pressed("ui_right"):
 		buffered_dir = Vector2i(1, 0)
@@ -25,22 +18,10 @@ func _process(delta: float) -> void:
 	elif Input.is_action_just_pressed("ui_up"):
 		buffered_dir = Vector2i(0, -1)
 
-	# when current position coincides with target position
-	if position.distance_to(target_pixel_pos) < 2.0:
-		position = target_pixel_pos
-		
-		# check for input presses
-		if buffered_dir != Vector2i.ZERO:
-			# upgrade grid position and physical target position
-			var next_grid_pos = grid_position + buffered_dir
-			
-			if next_grid_pos.x >= 0 and next_grid_pos.x <= grid_max_x and \
-			   next_grid_pos.y >= 0 and next_grid_pos.y <= grid_max_y:
-				grid_position = next_grid_pos
-				target_pixel_pos = Vector2(grid_position) * cell_size
-			
-			# empty the helper variable
-			buffered_dir = Vector2i.ZERO
-
-	# move towards target linearly
-	position = position.lerp(target_pixel_pos, move_speed * delta)
+	# consume the buffer once the previous move is over; a refused move
+	# (wall or occupied cell) is discarded, as before.
+	# The parent processes before its children, so GridMover starts
+	# moving in this same frame.
+	if buffered_dir != Vector2i.ZERO and not mover.is_moving():
+		mover.try_move(buffered_dir)
+		buffered_dir = Vector2i.ZERO
