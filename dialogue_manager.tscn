@@ -11,6 +11,7 @@ font_size = 6
 
 [node name="DialogManager" type="CanvasLayer" unique_id=822775384]
 process_mode = 3
+layer = 10
 script = ExtResource("1_k6lpl")
 
 [node name="DialogBox" type="Control" parent="." unique_id=1689784180]

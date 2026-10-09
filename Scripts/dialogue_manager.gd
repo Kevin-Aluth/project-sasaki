@@ -20,12 +20,6 @@ func _ready() -> void:
 		dialog_text.bbcode_enabled = true
 		dialog_text.scroll_active = false
 		dialog_box.hide()
-		#dialog_manager.dialog_finished.connect(func(): print("Dialogo finito"))
-		#dialog_manager.start([
-		#	{"name": "Sasaki", "text": "Ciao! [color=gold]Negro[/color]", "portrait": preload("res://icon.svg")},
-		#	{"name": "Sasaki", "text": "In questa seconda riga, un po' più lunga, per vedere come va a capo il testo, ti dico quanto odio le minoranze"},
-		#	{"name": "Franco", "text": "E questa è una battuta di un kabukisborrato."}
-	#])
 
 func start(lines: Array) -> void:
 	_lines = lines
@@ -43,6 +37,8 @@ func _show_line():
 	if line.has("portrait"):
 		var p = line["portrait"]
 		portrait.texture = load(p) if p is String else p
+	else:
+		portrait.texture = null
 	portrait.visible = portrait.texture != null
 		
 	dialog_text.text = line.get("text", "")
