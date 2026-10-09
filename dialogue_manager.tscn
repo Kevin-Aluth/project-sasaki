@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgpnwdy5lhc8j"]
 
-[ext_resource type="Script" uid="uid://boyvw7lnnxf1l" path="res://Scripts/dialogue_manager.gd" id="1_k6lpl"]
+[ext_resource type="Script" uid="uid://ll44o04pemfc" path="res://scripts/dialogue_manager.gd" id="1_k6lpl"]
 [ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="2_iove5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_riqys"]

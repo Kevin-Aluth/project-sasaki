@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://7xu7yl6jeaok"]
 
-[ext_resource type="Script" uid="uid://bqsmejf8i0nse" path="res://Scripts/npc_scene.gd" id="1_6m1gt"]
+[ext_resource type="Script" uid="uid://bqsmejf8i0nse" path="res://scripts/npc_scene.gd" id="1_6m1gt"]
 [ext_resource type="Texture2D" uid="uid://cvbr873fj8g8v" path="res://charlieTheCapybaraAnimationSheet.png" id="1_t52ji"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bhunq"]

@@ -1,14 +1,16 @@
 [gd_scene format=3 uid="uid://cndysq66umv0o"]
 
-[ext_resource type="Script" uid="uid://c0qw4knw62k" path="res://scripts/tests/damage_test.gd" id="1_test"]
-[ext_resource type="Script" uid="uid://bh0qer1x26tpj" path="res://scripts/grid/grid_manager.gd" id="2_grid"]
+[ext_resource type="Script" uid="uid://7gb6lbkh0fm6" path="res://scripts/tests/damage_test.gd" id="1_test"]
+[ext_resource type="Script" uid="uid://na2mylggdgnd" path="res://scripts/grid/grid_manager.gd" id="2_grid"]
 [ext_resource type="PackedScene" uid="uid://d2d5y15ien3g8" path="res://scenes/grid fight/sasaki_grid.tscn" id="3_player"]
 
 [node name="DamageTest" type="Node2D" unique_id=696009766]
 script = ExtResource("1_test")
 
 [node name="GridManager" type="Node2D" parent="." unique_id=696226010]
-position = Vector2(200, 75)
+position = Vector2(33, 19)
 script = ExtResource("2_grid")
+cell_size = 20
 
 [node name="Player" parent="GridManager" unique_id=1501503599 instance=ExtResource("3_player")]
+position = Vector2(80, 39)

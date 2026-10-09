@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0.0
 	
 	if can_move:
-		var direction := Input.get_axis("ui_left", "ui_right")
+		var direction := Input.get_axis("left", "right")
 		velocity.x = direction * speed
 	else:
 		velocity.x = 0.0

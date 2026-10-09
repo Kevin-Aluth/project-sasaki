@@ -1,22 +1,22 @@
 [gd_scene format=3 uid="uid://d2d5y15ien3g8"]
 
-[ext_resource type="Script" uid="uid://bemhun2jwhfxd" path="res://scripts/grid/sasaki_grid.gd" id="1_5ulc8"]
+[ext_resource type="Script" uid="uid://dk4d74yv844pc" path="res://scripts/grid/sasaki_grid.gd" id="1_5ulc8"]
 [ext_resource type="SpriteFrames" uid="uid://pjfnvojy8hkj" path="res://sprites/characters/player_frames.tres" id="2_kayyj"]
 [ext_resource type="Script" uid="uid://ip262ml80i7i" path="res://scripts/components/health_component.gd" id="3_health"]
-[ext_resource type="Script" uid="uid://c7vqant014pyw" path="res://scripts/components/hurtbox_component.gd" id="4_hurtbox"]
-[ext_resource type="Script" uid="uid://ck28fl20hnyam" path="res://scripts/components/grid_mover.gd" id="5_mover"]
+[ext_resource type="Script" uid="uid://m16mg23vt5d4" path="res://scripts/components/hurtbox_component.gd" id="4_hurtbox"]
+[ext_resource type="Script" uid="uid://duqhsitvasu2o" path="res://scripts/grid/grid_mover.gd" id="5_kayyj"]
 [ext_resource type="Script" uid="uid://d3vv2n1113rge" path="res://scripts/components/character_animator.gd" id="6_kns1s"]
-[ext_resource type="Script" uid="uid://bfyalh50igqf5" path="res://scripts/components/attack_component.gd" id="7_teb7w"]
+[ext_resource type="Script" uid="uid://douswabfwcxdw" path="res://scripts/components/attack_component.gd" id="7_teb7w"]
 [ext_resource type="Script" uid="uid://dv40iit7qdcpe" path="res://scripts/attacks/attack_data.gd" id="8_83l3x"]
 [ext_resource type="Resource" path="res://scenes/attacks/player_basic.tres" id="9_4icjc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h1via"]
-radius = 26.0
-height = 54.0
+radius = 8.0
+height = 16.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1l68p"]
-radius = 26.0
-height = 52.0
+radius = 7.0
+height = 14.0
 
 [sub_resource type="Animation" id="Animation_wy68k"]
 length = 0.3333333333333333
@@ -155,8 +155,8 @@ _data = {
 script = ExtResource("1_5ulc8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2136378983]
-position = Vector2(0, -34)
-scale = Vector2(3, 3)
+position = Vector2(1, -11)
+scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_kayyj")
 animation = &"attack_down"
 autoplay = "idle_down"
@@ -178,7 +178,7 @@ health = NodePath("../HealthComponent")
 shape = SubResource("CapsuleShape2D_1l68p")
 
 [node name="GridMover" type="Node" parent="." unique_id=1526357563]
-script = ExtResource("5_mover")
+script = ExtResource("5_kayyj")
 move_speed = 35.0
 
 [node name="CharacterAnimator" type="Node" parent="." unique_id=1812441549]

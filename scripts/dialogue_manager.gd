@@ -68,7 +68,7 @@ func _stop_blink():
 func _unhandled_input(event: InputEvent) -> void:
 	if not dialog_box.visible:
 		return
-	var pressed := event.is_action_pressed("ui_accept")
+	var pressed := event.is_action_pressed("accept")
 	
 	if event is InputEventMouseButton:
 		pressed = pressed or (event.pressed and event.button_index == MOUSE_BUTTON_LEFT)
