@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Project Sasaki"
+run/main_scene="uid://5ptd0u060o6o"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+DialogueManager="*uid://bgpnwdy5lhc8j"
 
 [display]
 
