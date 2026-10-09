@@ -47,7 +47,7 @@ func _activate() -> void:
 	activated.emit()
 
 func _draw() -> void:
-	var rect := Rect2(Vector2.ONE * -cell_size * 0.5, Vector2.ONE * cell_size).grow(-4)
+	var rect := Rect2(Vector2.ONE * -cell_size * 0.5, Vector2.ONE * cell_size)
 	if _active:
 		draw_rect(rect, active_color)
 	else:

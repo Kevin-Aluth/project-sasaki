@@ -33,8 +33,8 @@ func _process(_delta: float) -> void:
 		buffered_attack = false
 		buffered_dir = Vector2i.ZERO
 	# a refused move (wall or occupied cell) is discarded, as before.
-	# The parent processes before its children, so GridMover starts
-	# moving in this same frame.
+	# try_move() only sets the target: GridMover slides towards it in
+	# _physics_process, so the motion starts on the next physics tick.
 	elif buffered_dir != Vector2i.ZERO:
 		# turn even if the move is refused (wall, enemy): you can aim in place
 		mover.facing = buffered_dir

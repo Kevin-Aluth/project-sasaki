@@ -155,8 +155,7 @@ _data = {
 script = ExtResource("1_5ulc8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2136378983]
-position = Vector2(1, -11)
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, -11)
 sprite_frames = ExtResource("2_kayyj")
 animation = &"attack_down"
 autoplay = "idle_down"

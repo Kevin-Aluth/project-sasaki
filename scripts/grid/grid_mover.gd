@@ -56,7 +56,7 @@ func try_move(dir: Vector2i) -> bool:
 	_target = grid.cell_to_local(cell)
 	return true
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if is_moving():
 		body.position = body.position.lerp(_target, move_speed * delta)
 	else:
