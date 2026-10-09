@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 ## Player controller: only reads input. Grid logic lives in GridManager,
-## movement in the GridMover component, attacks in Attack child scenes.
+## movement in GridMover, attacks in AttackComponent, animations in
+## CharacterAnimator.
 
 @onready var mover: GridMover = $GridMover
-@onready var basic_attack: Attack = $BasicAttack
+@onready var attacks: AttackComponent = $AttackComponent
 
 var buffered_dir: Vector2i = Vector2i.ZERO
 var buffered_attack := false
@@ -23,12 +24,12 @@ func _process(_delta: float) -> void:
 		buffered_attack = true
 
 	# act only when idle: not sliding to a cell and not inside an attack
-	if mover.is_moving() or basic_attack.is_busy():
+	if mover.is_moving() or attacks.is_busy():
 		return
 
 	# attack has priority; the move pressed together with it is dropped
 	if buffered_attack:
-		basic_attack.execute()
+		attacks.execute(&"basic")
 		buffered_attack = false
 		buffered_dir = Vector2i.ZERO
 	# a refused move (wall or occupied cell) is discarded, as before.

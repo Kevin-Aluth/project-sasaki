@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://d2d5y15ien3g8"]
 
-[ext_resource type="Script" uid="uid://bemhun2jwhfxd" path="res://scripts/sasaki_grid.gd" id="1_5ulc8"]
-[ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="2_eab0s"]
+[ext_resource type="Script" uid="uid://bemhun2jwhfxd" path="res://scripts/grid/sasaki_grid.gd" id="1_5ulc8"]
+[ext_resource type="SpriteFrames" uid="uid://pjfnvojy8hkj" path="res://sprites/characters/player_frames.tres" id="2_kayyj"]
 [ext_resource type="Script" uid="uid://ip262ml80i7i" path="res://scripts/components/health_component.gd" id="3_health"]
 [ext_resource type="Script" uid="uid://c7vqant014pyw" path="res://scripts/components/hurtbox_component.gd" id="4_hurtbox"]
 [ext_resource type="Script" uid="uid://ck28fl20hnyam" path="res://scripts/components/grid_mover.gd" id="5_mover"]
-[ext_resource type="PackedScene" path="res://scenes/attacks/player_basic_attack.tscn" id="6_basic_attack"]
+[ext_resource type="Script" uid="uid://d3vv2n1113rge" path="res://scripts/components/character_animator.gd" id="6_kns1s"]
+[ext_resource type="Script" uid="uid://bfyalh50igqf5" path="res://scripts/components/attack_component.gd" id="7_teb7w"]
+[ext_resource type="Script" uid="uid://dv40iit7qdcpe" path="res://scripts/attacks/attack_data.gd" id="8_83l3x"]
+[ext_resource type="Resource" path="res://scenes/attacks/player_basic.tres" id="9_4icjc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h1via"]
 radius = 26.0
@@ -15,12 +18,148 @@ height = 54.0
 radius = 26.0
 height = 52.0
 
+[sub_resource type="Animation" id="Animation_wy68k"]
+length = 0.3333333333333333
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack_down"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackComponent")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.083333336),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"strike"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_cuwdw"]
+length = 0.3333333333333333
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack_side"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackComponent")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.083333336),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"strike"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_vrdkn"]
+length = 0.3333333333333333
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"attack_up"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AttackComponent")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.083333336),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"strike"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qbubs"]
+_data = {
+&"attack_down": SubResource("Animation_wy68k"),
+&"attack_side": SubResource("Animation_cuwdw"),
+&"attack_up": SubResource("Animation_vrdkn")
+}
+
 [node name="SasakiGrid" type="CharacterBody2D" unique_id=1821160280]
 script = ExtResource("1_5ulc8")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1917137692]
-scale = Vector2(0.44, 0.44)
-texture = ExtResource("2_eab0s")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2136378983]
+position = Vector2(0, -34)
+scale = Vector2(3, 3)
+sprite_frames = ExtResource("2_kayyj")
+animation = &"attack_down"
+autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=920677964]
 shape = SubResource("CapsuleShape2D_h1via")
@@ -42,4 +181,14 @@ shape = SubResource("CapsuleShape2D_1l68p")
 script = ExtResource("5_mover")
 move_speed = 35.0
 
-[node name="BasicAttack" parent="." instance=ExtResource("6_basic_attack")]
+[node name="CharacterAnimator" type="Node" parent="." unique_id=1812441549]
+script = ExtResource("6_kns1s")
+
+[node name="AttackComponent" type="Node" parent="." unique_id=1704082318]
+script = ExtResource("7_teb7w")
+attacks = Dictionary[StringName, ExtResource("8_83l3x")]({
+&"basic": ExtResource("9_4icjc")
+})
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1739242574]
+libraries/ = SubResource("AnimationLibrary_qbubs")
