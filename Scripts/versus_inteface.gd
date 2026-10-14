@@ -20,7 +20,6 @@ var enemy_strength: float = 50
 var can_choose_dialogue: bool = false
 
 func _ready() -> void:
-	#progess_bar_fire.position.y -= progess_bar_fire.size.y / 4
 	dialogue_options_container.visible = false
 	enemy_strength = enemy_resource.enemy_strength
 	enemy_face.texture = enemy_resource.enemy_sprite
@@ -32,7 +31,6 @@ func _process(delta: float) -> void:
 #	We use progress_bar_white_amount to choose the thickness of the white part on the bar split
 	progress_bar.value = value - progress_bar_white_amount
 	progress_bar_white.value = clampf(value, 1.0, 100.0)
-	#progess_bar_fire.position.x = progress_bar.position.x + (progress_bar.texture_progress.width * (progress_bar.value / 100.0)) - progess_bar_fire.size.x / 2
 	if value >= 75 and !can_choose_dialogue:
 		print("mash vinto")
 		dialogue_options_container.visible = true
@@ -40,7 +38,7 @@ func _process(delta: float) -> void:
 
 	if value <= 0:
 		print("mash perso")
-		versus_lost.emit
+		versus_lost.emit()
 		queue_free()
 
 

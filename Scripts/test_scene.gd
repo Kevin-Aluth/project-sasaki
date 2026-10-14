@@ -32,8 +32,10 @@ func _on_button_pressed() -> void:
 	add_child(instance)
 	instance.versus_lost.connect(_on_versus_lost)
 	instance.dialogue_chosen.connect(_on_dialogue_chosen)
+	get_tree().paused = true
 
 func _on_versus_lost() -> void:
+	get_tree().paused = false
 	player_health -= 3
 	update_health_bar()
 		
@@ -42,4 +44,5 @@ func update_health_bar():
 	player_health_bar.value = player_health / player_max_health * 100
 
 func _on_dialogue_chosen(dialogue: String) -> void:
+	get_tree().paused = false
 	label.text = dialogue
