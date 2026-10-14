@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyResource" format=3 uid="uid://id01miunulxs"]
+
+[ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="1_jy53r"]
+[ext_resource type="PackedScene" uid="uid://pvqeh31h5o4b" path="res://scenes/enemy_dating_sim_closeup.tscn" id="1_mru0m"]
+[ext_resource type="Script" uid="uid://c1pcrkvaaaywq" path="res://scripts/enemy_resource_script.gd" id="2_mru0m"]
+
+[resource]
+script = ExtResource("2_mru0m")
+enemy_name = "Test"
+enemy_sprite = ExtResource("1_jy53r")
+enemy_dating_sim_closeup_scene = ExtResource("1_mru0m")
+full_enemy_sprite = ExtResource("1_jy53r")
+enemy_health = 10.0
+metadata/_custom_type_script = "uid://c1pcrkvaaaywq"

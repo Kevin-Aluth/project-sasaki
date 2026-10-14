@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://cf5u82pp0lkda"]
+
+[ext_resource type="Texture2D" uid="uid://diyntcwd8ii5w" path="res://sprites/ui box.png" id="1_3i83n"]
+
+[node name="Control" type="Control" unique_id=1034871017]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=786475996]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.35000002
+anchor_bottom = 1.0
+grow_vertical = 2
+texture = ExtResource("1_3i83n")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="." unique_id=2097435008]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35000002
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_3i83n")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="." unique_id=158929340]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.67300004
+anchor_top = 0.85
+anchor_right = 0.67300004
+anchor_bottom = 0.85
+offset_left = -88.360016
+offset_top = -20.0
+offset_right = 88.639984
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+texture = ExtResource("1_3i83n")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5

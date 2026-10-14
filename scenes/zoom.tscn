@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dof5f2r38qp0w"]
+
+[ext_resource type="Shader" uid="uid://decbsfnu5yg0k" path="res://Shaders/zoom2.gdshader" id="1_30wa2"]
+[ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="2_sis31"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
+shader = ExtResource("1_30wa2")
+shader_parameter/magnification = 2.0
+shader_parameter/center = Vector2(0.5, 0.5)
+
+[node name="Control" type="Control" unique_id=319535154]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=745853329]
+material = SubResource("ShaderMaterial_g4v7s")
+layout_mode = 0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 44.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=810150337]
+texture = ExtResource("2_sis31")
