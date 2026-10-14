@@ -22,7 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 23
+theme_override_constants/separation = 40
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=2117936534]
 layout_mode = 2
@@ -95,5 +95,12 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 15
 text = "Vai al Versus"
+
+[node name="Label" type="Label" parent="." unique_id=145072362]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 117.0
+offset_right = 276.0
+offset_bottom = 140.0
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

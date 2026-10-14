@@ -8,7 +8,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d0u6y"]
 shader = ExtResource("3_isp74")
-shader_parameter/blur_amount = 3.6400001728999998
+shader_parameter/blur_amount = 3.6400001729
 
 [sub_resource type="Gradient" id="Gradient_rkiaj"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 1)
@@ -112,16 +112,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -577.5
-offset_top = -82.0
-offset_right = 577.5
-offset_bottom = 82.0
+offset_left = -160.0
+offset_top = -90.0
+offset_right = 160.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_bottom = 33
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1407862103]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 18
 
@@ -157,7 +157,7 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-value = 91.0
+value = 74.0
 texture_under = SubResource("GradientTexture2D_avnxn")
 texture_progress = SubResource("GradientTexture2D_qssos")
 
@@ -174,7 +174,7 @@ offset_right = 25.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-value = 82.0
+value = 54.0
 texture_progress = SubResource("GradientTexture2D_rkiaj")
 
 [node name="ColorRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/ProgressBar2/ProgressBar" unique_id=491200613]
@@ -195,17 +195,87 @@ grow_vertical = 2
 scale = Vector2(0.7, 0.7)
 texture = SubResource("GradientTexture2D_g4v7s")
 
+[node name="MarginContainer3" type="MarginContainer" parent="." unique_id=1796870708]
+layout_mode = 0
+offset_left = -2.5
+offset_top = 124.0
+offset_right = 322.5
+offset_bottom = 140.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer3" unique_id=1125181841]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer3/HBoxContainer" unique_id=1423877775]
+custom_minimum_size = Vector2(15, 16)
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[img]res://Sprites/keyboard_1.png[/img]"
+fit_content = true
+scroll_active = false
+
+[node name="DialogueLeft" type="RichTextLabel" parent="MarginContainer3/HBoxContainer" unique_id=389645653]
+custom_minimum_size = Vector2(115, 16)
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "Ti puzza il ciato"
+fit_content = true
+scroll_active = false
+
+[node name="DialogueRight" type="RichTextLabel" parent="MarginContainer3/HBoxContainer" unique_id=1868157400]
+custom_minimum_size = Vector2(115, 16)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "Ti si incrociano gli occhi"
+horizontal_alignment = 2
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="MarginContainer3/HBoxContainer" unique_id=899123537]
+custom_minimum_size = Vector2(15, 16)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "[img]res://Sprites/keyboard_2.png[/img]"
+
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1823817805]
 custom_minimum_size = Vector2(75, 25)
 layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
+anchors_preset = -1
+anchor_left = 0.51100004
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.51100004
 anchor_bottom = 1.0
-offset_left = -97.0
-offset_top = -25.0
+offset_left = -48.52002
+offset_top = -27.0
+offset_right = 48.47998
+offset_bottom = -2.0
 grow_horizontal = 0
 grow_vertical = 0
 bbcode_enabled = true
 text = "[b][shake rate=20.0 level=5 connected=1]	Mash [/shake][/b][b][shake rate=20.0 level=10 connected=1]	E[/shake][/b]"
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=39780280]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 90.0
+offset_right = 197.0
+offset_bottom = 94.0
+color = Color(0.6715141, 0.67151415, 0.6715141, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=438509966]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 102.0
+offset_right = 197.0
+offset_bottom = 106.0
+color = Color(0.67058825, 0.67058825, 0.67058825, 1)

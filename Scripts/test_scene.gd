@@ -6,6 +6,7 @@ extends Control
 @onready var enemy_name = $VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/Label2
 @onready var enemy_sprite = $VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer2/TextureRect
 @onready var player_health_bar = $VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/ProgressBar
+@onready var label = $Label
 
 var enemy_health: float = 10
 var enemy_max_health: int = 10
@@ -29,15 +30,16 @@ func _on_button_pressed() -> void:
 	var versus_scene = preload("res://Scenes/versus_inteface.tscn")
 	var instance = versus_scene.instantiate()
 	add_child(instance)
-	instance.versus_finished.connect(_on_versus_finished)
+	instance.versus_lost.connect(_on_versus_lost)
+	instance.dialogue_chosen.connect(_on_dialogue_chosen)
 
-func _on_versus_finished(won):
-	if won:
-		enemy_health -= 3
-	else:
-		player_health -= 3
+func _on_versus_lost() -> void:
+	player_health -= 3
 	update_health_bar()
 		
 func update_health_bar():
 	enemy_health_bar.value = enemy_health / enemy_max_health * 100
 	player_health_bar.value = player_health / player_max_health * 100
+
+func _on_dialogue_chosen(dialogue: String) -> void:
+	label.text = dialogue
