@@ -24,14 +24,22 @@ script = ExtResource("3_wvh3h")
 text_line = "Strabico!"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DatingSimArea" unique_id=911387453]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_5g1q0")
 
 [node name="DatingSimArea2" type="Area2D" parent="." unique_id=642388694]
+position = Vector2(62, 102)
 script = ExtResource("3_wvh3h")
 text_line = "Denti storti!"
 metadata/_custom_type_script = "uid://dwxh1th2edjmb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DatingSimArea2" unique_id=1265062590]
-position = Vector2(62, 104)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="DatingSimArea3" type="Area2D" parent="." unique_id=304537414]
+position = Vector2(54, 94)
+script = ExtResource("3_wvh3h")
+text_line = "Prova"
+metadata/_custom_type_script = "uid://dwxh1th2edjmb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DatingSimArea3" unique_id=1890192177]
 shape = SubResource("RectangleShape2D_g4v7s")
