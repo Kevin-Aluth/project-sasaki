@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	#Instantiate the versus interface and connect its signals
-	var versus_scene = preload("res://Scenes/versus_inteface.tscn")
+	var versus_scene = preload("res://scenes/versus_inteface.tscn")
 	var instance = versus_scene.instantiate()
 	add_child(instance)
 	instance.versus_lost.connect(_on_versus_lost)

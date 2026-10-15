@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cdk0yulwm6kqt"]
 
 [ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="1_b6kwt"]
-[ext_resource type="Script" uid="uid://cfgr5x81ax7ul" path="res://Scripts/versus_inteface.gd" id="1_itrqa"]
+[ext_resource type="Script" uid="uid://cfgr5x81ax7ul" path="res://scripts/versus_inteface.gd" id="1_itrqa"]
 [ext_resource type="Shader" uid="uid://xhbojt6wcckd" path="res://Shaders/versus_bar_fire.gdshader" id="2_itrqa"]
 [ext_resource type="Resource" uid="uid://id01miunulxs" path="res://Resources/test_enemy.tres" id="2_rkiaj"]
 [ext_resource type="Shader" uid="uid://cuff56r7nvonr" path="res://Shaders/background_blur.gdshader" id="3_isp74"]
@@ -218,7 +218,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
-text = "[img]res://Sprites/keyboard_1.png[/img]"
+text = "[img]res://sprites/keyboard_1.png[/img]"
 fit_content = true
 scroll_active = false
 
@@ -246,7 +246,7 @@ custom_minimum_size = Vector2(15, 16)
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
-text = "[img]res://Sprites/keyboard_2.png[/img]"
+text = "[img]res://sprites/keyboard_2.png[/img]"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1823817805]
 custom_minimum_size = Vector2(75, 25)
