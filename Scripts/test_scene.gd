@@ -27,14 +27,18 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
+	#Instantiate the versus interface and connect its signals
 	var versus_scene = preload("res://Scenes/versus_inteface.tscn")
 	var instance = versus_scene.instantiate()
 	add_child(instance)
 	instance.versus_lost.connect(_on_versus_lost)
 	instance.dialogue_chosen.connect(_on_dialogue_chosen)
+
+	#To avoid being able to press the button we pause the tree, while the interface is not pausable. Could also disable the button
 	get_tree().paused = true
 
 func _on_versus_lost() -> void:
+	#Resume the tree and apply the debuffs on Progress bar depletion 
 	get_tree().paused = false
 	player_health -= 3
 	update_health_bar()
@@ -44,5 +48,7 @@ func update_health_bar():
 	player_health_bar.value = player_health / player_max_health * 100
 
 func _on_dialogue_chosen(dialogue: String) -> void:
+	#Resume the tree after dialogue is chosen.
+	#Can also pass on which one was chosen ("left", "right" or 0 and 1) to have buffs and debuffs assigned accordingly.
 	get_tree().paused = false
 	label.text = dialogue
