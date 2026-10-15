@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://pvqeh31h5o4b"]
+
+[ext_resource type="Script" uid="uid://cfkffc4tgsu8h" path="res://scripts/enemy_dating_sim_closeup.gd" id="1_njn5t"]
+[ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="2_xlanp"]
+[ext_resource type="Script" uid="uid://dwxh1th2edjmb" path="res://scripts/dating_sim_area.gd" id="3_wvh3h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5g1q0"]
+size = Vector2(16, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(13, 12)
+
+[node name="Node2D" type="Node2D" unique_id=1028485846]
+script = ExtResource("1_njn5t")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=123446120]
+position = Vector2(52, 77)
+scale = Vector2(0.555, 1)
+texture = ExtResource("2_xlanp")
+
+[node name="DatingSimArea" type="Area2D" parent="." unique_id=1999879013]
+position = Vector2(40, 78)
+script = ExtResource("3_wvh3h")
+text_line = "Strabico!"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DatingSimArea" unique_id=911387453]
+shape = SubResource("RectangleShape2D_5g1q0")
+
+[node name="DatingSimArea2" type="Area2D" parent="." unique_id=642388694]
+position = Vector2(62, 102)
+script = ExtResource("3_wvh3h")
+text_line = "Denti storti!"
+metadata/_custom_type_script = "uid://dwxh1th2edjmb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DatingSimArea2" unique_id=1265062590]
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="DatingSimArea3" type="Area2D" parent="." unique_id=304537414]
+position = Vector2(54, 94)
+script = ExtResource("3_wvh3h")
+text_line = "Prova"
+metadata/_custom_type_script = "uid://dwxh1th2edjmb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DatingSimArea3" unique_id=1890192177]
+shape = SubResource("RectangleShape2D_g4v7s")
