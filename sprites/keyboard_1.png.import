@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bj84rbp7dphck"
-path="res://.godot/imported/keyboard_1.png-bde5a409abb8a8e0d53aa65334dcdf5d.ctex"
+path="res://.godot/imported/keyboard_1.png-95a956e26a43b0f6e8a070ef115bfe4c.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://sprites/keyboard_1.png"
-dest_files=["res://.godot/imported/keyboard_1.png-bde5a409abb8a8e0d53aa65334dcdf5d.ctex"]
+dest_files=["res://.godot/imported/keyboard_1.png-95a956e26a43b0f6e8a070ef115bfe4c.ctex"]
 
 [params]
 
