@@ -11,3 +11,4 @@ enemy_sprite = ExtResource("1_jy53r")
 enemy_dating_sim_closeup_scene = ExtResource("1_mru0m")
 full_enemy_sprite = ExtResource("1_jy53r")
 enemy_health = 10.0
+enemy_strength = 50
