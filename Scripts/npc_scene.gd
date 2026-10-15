@@ -4,10 +4,18 @@ extends Node2D
 @export var portrait: Texture2D
 
 var lines: Array[Dictionary] = [
-	{"who": "player", "text": "Capibara?!"},
-	{"who": "npc", "text": "Oh! Ma come ti permetti, io sono Franco. Cazzo vuoi?"},
-	{"who": "player", "text": "Scusa Franco, io sono Sasaki e passavo di qua"},
-	{"who": "npc", "text": "Non ti scuso, cogliona. Vattene!"}
+	{"who": "player", "text": "Capibara?!"}, #0
+	{"who": "npc",  #1
+		"text": "Oh! Ma come ti permetti, io sono Franco. Cazzo vuoi?",
+		"choices": [
+			{"text": "Scusa, me ne vado", "next": 2},
+			{"text": "Negro! Ma che problemi hai?", "next": 3},
+			{"text": "Hai ragione, scusa ciucciapalle", "next": 4},
+		]
+	},
+	{"who": "npc", "text": "Non ti scuso, cogliona. Vattene!", "next": -1},
+	{"who": "npc", "text": "[b][color=red]PROBLEMI?![/color][/b] \n[i]boss music intesifies[/i]", "next": -1},
+	{"who": "npc", "text": "Mh. Per stavolta passi, perchè effettivamente amo ciucciare le palle", "next": -1},
 ]
 
 @onready var interact_area: Area2D = $Sprite2D/InteractArea
@@ -57,7 +65,7 @@ func _input(event: InputEvent) -> void:
 		_refresh_prompt()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _player and not _dialog_open and event.is_action("interact"):
+	if _player and not _dialog_open and event.is_action_pressed("interact"):
 		get_viewport().set_input_as_handled()
 		DialogueManager.start(_build_lines())
 
@@ -65,9 +73,14 @@ func _build_lines() -> Array:
 	var out := []
 	for l in lines:
 		var is_player: bool = l.get("who", "npc") == "player"
-		out.append({
+		var entry := {
 			"name": _player.character_name if is_player else npc_name,
 			"portrait": _player.portrait if is_player else portrait,
 			"text": l.get("text", "")
-		})
+		}
+		if l.has("choices"):
+			entry["choices"] = l["choices"]
+		if l.has("next"):
+			entry["next"] = l["next"]
+		out.append(entry)
 	return out

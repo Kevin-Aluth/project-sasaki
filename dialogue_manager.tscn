@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bgpnwdy5lhc8j"]
 
-[ext_resource type="Script" uid="uid://boyvw7lnnxf1l" path="res://Scripts/dialogue_manager.gd" id="1_k6lpl"]
+[ext_resource type="Script" uid="uid://c3ld6r13r2d3x" path="res://scripts/dialogue_manager.gd" id="1_iove5"]
 [ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="2_iove5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_riqys"]
@@ -12,7 +12,7 @@ font_size = 6
 [node name="DialogManager" type="CanvasLayer" unique_id=822775384]
 process_mode = 3
 layer = 10
-script = ExtResource("1_k6lpl")
+script = ExtResource("1_iove5")
 
 [node name="DialogBox" type="Control" parent="." unique_id=1689784180]
 custom_minimum_size = Vector2(320, 50)
@@ -42,6 +42,7 @@ theme_override_constants/margin_bottom = 6
 
 [node name="DialogText" type="RichTextLabel" parent="DialogBox/MainPanel/TextMargin" unique_id=860198561]
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 6
 theme_override_font_sizes/bold_font_size = 6
 theme_override_font_sizes/bold_italics_font_size = 6
@@ -92,5 +93,21 @@ label_settings = SubResource("LabelSettings_sn0t7")
 horizontal_alignment = 2
 vertical_alignment = 2
 autowrap_mode = 3
+
+[node name="ChoiceContainer" type="VBoxContainer" parent="." unique_id=2093291650]
+visible = false
+custom_minimum_size = Vector2(120, 0)
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -20.0
+offset_right = -8.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 4
 
 [connection signal="finished" from="DialogBox/MainPanel/TextMargin/DialogText" to="." method="_on_dialog_text_finished"]
