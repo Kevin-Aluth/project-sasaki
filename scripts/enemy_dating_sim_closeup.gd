@@ -4,7 +4,8 @@ extends Node2D
 
 var dating_areas: Array[DatingSimArea]
 var active_area: DatingSimArea = null
-var label: Label
+
+signal area_clicked(dialogue: String)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,5 +24,4 @@ func _on_area_mouse_exited(area: DatingSimArea) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("accept") and active_area:
-		if label:
-			label.text = active_area.text_line
+		area_clicked.emit(active_area.text_line)

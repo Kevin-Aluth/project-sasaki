@@ -11,7 +11,7 @@ extends Node2D
 func _ready() -> void:
 	if enemy:
 		var instance = enemy.enemy_dating_sim_closeup_scene.instantiate()
-		instance.label = label
+		instance.area_clicked.connect(_on_area_clicked)
 		add_child(instance)
 		var enemy_sprite = Sprite2D.new()
 		enemy_sprite.texture = enemy.full_enemy_sprite
@@ -21,3 +21,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$Control.position = get_viewport().get_mouse_position()
+
+func _on_area_clicked(dialogue: String) -> void:
+	#Show the text line linked to the area clicked
+	label.text = dialogue
