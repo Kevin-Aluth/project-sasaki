@@ -3,7 +3,7 @@ extends Node2D
 ## Test scene for damage reception and grid occupancy: spawns CellAttacks
 ## at a fixed interval and logs health and blocked moves.
 
-const CELL_ATTACK := preload("res://scenes/attacks/cell_attack.tscn")
+const CELL_ATTACK := preload("res://scenes/boss_fight/grid/attacks/cell_attack.tscn")
 
 ## Seconds between two spawned attacks.
 @export var spawn_interval: float = 1.2
