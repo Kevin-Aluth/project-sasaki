@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Weakness" format=3 uid="uid://4yc8lk2bty7s"]
+
+[ext_resource type="Script" uid="uid://cpq28n3ihmcva" path="res://scripts/boss_fight/weakness_resource.gd" id="1_rtcan"]
+
+[resource]
+script = ExtResource("1_rtcan")
+id = &"test_enemy_cross_eyed"
+description = "Test enemy: found on the eyes area of the dating sim close-up."
+display_name = "Strabico!"

@@ -19,3 +19,6 @@ extends Resource
 
 ##Enemy strength, cannot be set under 1, affects the rate at which the Progress bar in the versus interface goes down
 @export_range(1, 100, 1,"or_greater") var enemy_strength: int
+
+##Weaknesses of this enemy, discovered in the dating sim or told by NPCs during exploration
+@export var weaknesses: Array[Weakness]
