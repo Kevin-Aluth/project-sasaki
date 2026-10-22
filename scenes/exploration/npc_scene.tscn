@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cl1q37d65lrka" path="res://scripts/exploration/npc_scene.gd" id="1_6m1gt"]
 [ext_resource type="Texture2D" uid="uid://cvbr873fj8g8v" path="res://sprites/characters/charlie_the_capybara_animation_sheet.png" id="1_t52ji"]
 [ext_resource type="Texture2D" uid="uid://dok7g01qjxxut" path="res://sprites/portraits/franco.png" id="2_sp5et"]
+[ext_resource type="Resource" uid="uid://cfr21hfo8fhpt" path="res://resources/enemies/test_enemy_weaknesses/crooked_teeth.tres" id="3_7su13"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bhunq"]
 radius = 30.0
@@ -13,6 +14,7 @@ height = 80.0
 [node name="npc_scene" type="Node2D" unique_id=293067389]
 script = ExtResource("1_6m1gt")
 portrait = ExtResource("2_sp5et")
+reveals = ExtResource("3_7su13")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1115989807]
 texture = ExtResource("1_t52ji")
