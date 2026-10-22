@@ -66,7 +66,9 @@ func _on_line_done():
 	dialog_text.visible_characters = -1
 	
 	var line =_lines[_index]
-	
+	# La battuta è stata letta tutta: ora si sblocca il suo flag, se ne ha uno
+	_apply_flag(line)
+
 	if line.has("choices") and not line["choices"].is_empty():
 		_show_choices(line["choices"])
 		return
@@ -170,7 +172,21 @@ func _on_choice_selected(choice: Dictionary) -> void:
 	_choosing = false
 	_clear_choices()
 	choice_container.hide()
+	_apply_flag(choice)
 	_goto(choice.get("next", _index + 1))
+
+# Sblocca in GameState il flag del campo "sets" di una battuta o di una scelta.
+# Accetta una StoryFlag o una Weakness (che è una StoryFlag).
+func _apply_flag(entry: Dictionary) -> void:
+	if not entry.has("sets"):
+		return
+	var flag = entry["sets"]
+	if flag is StoryFlag:
+		GameState.set_flag(flag)
+	elif flag == null:
+		push_warning("DialogueManager: \"sets\" è vuoto in \"%s\" (export non assegnato?)" % entry.get("text", ""))
+	else:
+		push_error("DialogueManager: \"sets\" deve essere una StoryFlag o una Weakness, non %s" % [flag])
 
 # Va alla riga i; se è fuori dai limiti
 func _goto(i: int) -> void:

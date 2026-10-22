@@ -32,6 +32,9 @@ func set_flag(flag: StoryFlag, value := true) -> void:
 	if _flags.get(flag.id, false) == value:
 		return
 	_flags[flag.id] = value
+	# e.g. GameState: unlocked Weakness "test_enemy_crooked_teeth" (res://.../crooked_teeth.tres)
+	print("GameState: %s %s \"%s\" (%s)" % ["unlocked" if value else "locked",
+		flag.get_script().get_global_name(), flag.id, flag.resource_path])
 	flag_changed.emit(flag.id, value)
 
 func _check(flag: StoryFlag) -> void:

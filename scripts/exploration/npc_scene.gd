@@ -2,21 +2,28 @@ extends Node2D
 
 @export var npc_name := "Franco"
 @export var portrait: Texture2D
+## Flag (or Weakness) this NPC reveals: unlocked after the line marked with
+## "sets": reveals. Leave it empty if this NPC reveals nothing.
+@export var reveals: StoryFlag
 
-var lines: Array[Dictionary] = [
-	{"who": "player", "text": "Capibara?!"}, #0
-	{"who": "npc",  #1
-		"text": "Oh! Ma come ti permetti, io sono Franco. Cazzo vuoi?",
-		"choices": [
-			{"text": "Scusa, me ne vado", "next": 2},
-			{"text": "Negro! Ma che problemi hai?", "next": 3},
-			{"text": "Hai ragione, scusa ciucciapalle", "next": 4},
-		]
-	},
-	{"who": "npc", "text": "Non ti scuso, cogliona. Vattene!", "next": -1},
-	{"who": "npc", "text": "[b][color=red]PROBLEMI?![/color][/b] \n[i]boss music intesifies[/i]", "next": -1},
-	{"who": "npc", "text": "Mh. Per stavolta passi, perchè effettivamente amo ciucciare le palle", "next": -1},
-]
+# A function and not a var: a var initializer runs before the exported values
+# are assigned, so "reveals" would still be null in there.
+func _get_lines() -> Array[Dictionary]:
+	return [
+		{"who": "player", "text": "Capibara?!"}, #0
+		{"who": "npc",  #1
+			"text": "Oh! Ma come ti permetti, io sono Franco. Cazzo vuoi?",
+			"choices": [
+				{"text": "Scusa, me ne vado", "next": 2},
+				{"text": "Negro! Ma che problemi hai?", "next": 3},
+				{"text": "Hai ragione, scusa ciucciapalle", "next": 4},
+			]
+		},
+		{"who": "npc", "text": "Non ti scuso, cogliona. Vattene!", "next": -1},
+		{"who": "npc", "text": "[b][color=red]PROBLEMI?![/color][/b] \n[i]boss music intesifies[/i]", "next": -1},
+		{"who": "npc", "text": "Mh. Per stavolta passi, perchè effettivamente amo ciucciare le palle", "next": -1,
+			"sets": reveals},
+	]
 
 @onready var interact_area: Area2D = $Sprite2D/InteractArea
 @onready var prompt: Label = $Sprite2D/Prompt
@@ -71,7 +78,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _build_lines() -> Array:
 	var out := []
-	for l in lines:
+	for l in _get_lines():
 		var is_player: bool = l.get("who", "npc") == "player"
 		var entry := {
 			"name": _player.character_name if is_player else npc_name,
@@ -82,5 +89,8 @@ func _build_lines() -> Array:
 			entry["choices"] = l["choices"]
 		if l.has("next"):
 			entry["next"] = l["next"]
+		# skipped when the export is empty: this NPC simply reveals nothing
+		if l.get("sets") != null:
+			entry["sets"] = l["sets"]
 		out.append(entry)
 	return out
