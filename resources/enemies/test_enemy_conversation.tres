@@ -1,0 +1,68 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://dfkkic3xf11vt"]
+
+[ext_resource type="Script" uid="uid://cufvsmf7uo5ib" path="res://scripts/dialogue/dialogue_line_resource.gd" id="1_ac7ei"]
+[ext_resource type="Script" uid="uid://ceejsr1xn3f1k" path="res://scripts/dialogue/dialogue_response_resource.gd" id="2_m3nym"]
+[ext_resource type="Script" uid="uid://ckolqbp4prihy" path="res://scripts/boss_fight/dating_sim/reaction_resource.gd" id="3_khoup"]
+[ext_resource type="Resource" uid="uid://dq4sc3m440md1" path="res://resources/enemies/test_enemy_weaknesses/lost_tournament.tres" id="4_j7q47"]
+[ext_resource type="Script" uid="uid://d2luiomflkghu" path="res://scripts/dialogue/dialogue_resource.gd" id="5_1hmda"]
+
+[sub_resource type="Resource" id="Resource_js6bs"]
+script = ExtResource("1_ac7ei")
+text = "Benvenuta nel mio dojo. Dicono che tu stia cercando marito."
+
+[sub_resource type="Resource" id="Resource_5shby"]
+script = ExtResource("1_ac7ei")
+speaker = 1
+text = "Dicono bene. Sono qui per capire se sei all'altezza."
+
+[sub_resource type="Resource" id="Resource_es7m4"]
+script = ExtResource("3_khoup")
+lines = Array[String](["Nessuno. Chiedi pure in giro."])
+
+[sub_resource type="Resource" id="Resource_8lsbs"]
+script = ExtResource("2_m3nym")
+text = "Nessuno? Proprio nessuno?"
+reaction = SubResource("Resource_es7m4")
+
+[sub_resource type="Resource" id="Resource_3ieni"]
+script = ExtResource("3_khoup")
+lines = Array[String](["Chi... chi te l'ha detto?!", "Quel giorno c'era vento contrario!"])
+ego_change = -1
+
+[sub_resource type="Resource" id="Resource_wg1sy"]
+script = ExtResource("2_m3nym")
+text = "Nemmeno al torneo di primavera?"
+requires = ExtResource("4_j7q47")
+reaction = SubResource("Resource_3ieni")
+
+[sub_resource type="Resource" id="Resource_dr540"]
+script = ExtResource("3_khoup")
+lines = Array[String](["La modestia è per chi perde."])
+
+[sub_resource type="Resource" id="Resource_jgpre"]
+script = ExtResource("2_m3nym")
+text = "Che modestia."
+reaction = SubResource("Resource_dr540")
+
+[sub_resource type="Resource" id="Resource_4vpot"]
+script = ExtResource("1_ac7ei")
+id = &"boast"
+text = "All'altezza? Nessuno mi ha mai battuto, né in combattimento né in amore."
+responses = Array[ExtResource("2_m3nym")]([SubResource("Resource_8lsbs"), SubResource("Resource_wg1sy"), SubResource("Resource_jgpre")])
+
+[sub_resource type="Resource" id="Resource_10xoo"]
+script = ExtResource("1_ac7ei")
+text = "Bah. Parliamo di cose serie: cosa cerchi in un marito?"
+
+[sub_resource type="Resource" id="Resource_xgtlc"]
+script = ExtResource("1_ac7ei")
+speaker = 1
+text = "Qualcuno che non si vanti ogni due frasi."
+
+[sub_resource type="Resource" id="Resource_uej8x"]
+script = ExtResource("1_ac7ei")
+text = "Allora sei nel posto sbagliato. Preparati a combattere!"
+
+[resource]
+script = ExtResource("5_1hmda")
+lines = Array[ExtResource("1_ac7ei")]([SubResource("Resource_js6bs"), SubResource("Resource_5shby"), SubResource("Resource_4vpot"), SubResource("Resource_10xoo"), SubResource("Resource_xgtlc"), SubResource("Resource_uej8x")])

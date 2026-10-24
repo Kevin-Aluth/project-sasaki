@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="DialogueResource" format=3 uid="uid://c588yorqbewb7"]
+
+[ext_resource type="Script" uid="uid://cufvsmf7uo5ib" path="res://scripts/dialogue/dialogue_line_resource.gd" id="1_lymu3"]
+[ext_resource type="Script" uid="uid://ceejsr1xn3f1k" path="res://scripts/dialogue/dialogue_response_resource.gd" id="2_6tcx1"]
+[ext_resource type="Resource" uid="uid://cfr21hfo8fhpt" path="res://resources/enemies/test_enemy_weaknesses/crooked_teeth.tres" id="3_ytilp"]
+[ext_resource type="Script" uid="uid://d2luiomflkghu" path="res://scripts/dialogue/dialogue_resource.gd" id="4_kunq5"]
+
+[sub_resource type="Resource" id="Resource_k2kit"]
+script = ExtResource("1_lymu3")
+speaker = 1
+text = "Capibara?!"
+
+[sub_resource type="Resource" id="Resource_ijceq"]
+script = ExtResource("2_6tcx1")
+text = "Scusa, me ne vado"
+next = &"sorry"
+
+[sub_resource type="Resource" id="Resource_p02an"]
+script = ExtResource("2_6tcx1")
+text = "Negro! Ma che problemi hai?"
+next = &"problems"
+
+[sub_resource type="Resource" id="Resource_xuwr8"]
+script = ExtResource("2_6tcx1")
+text = "Hai ragione, scusa ciucciapalle"
+next = &"spared"
+
+[sub_resource type="Resource" id="Resource_j86su"]
+script = ExtResource("1_lymu3")
+text = "Oh! Ma come ti permetti, io sono Franco. Cazzo vuoi?"
+responses = Array[ExtResource("2_6tcx1")]([SubResource("Resource_ijceq"), SubResource("Resource_p02an"), SubResource("Resource_xuwr8")])
+
+[sub_resource type="Resource" id="Resource_7ogtn"]
+script = ExtResource("1_lymu3")
+id = &"sorry"
+text = "Non ti scuso, cogliona. Vattene!"
+next = &"end"
+
+[sub_resource type="Resource" id="Resource_xsqm4"]
+script = ExtResource("1_lymu3")
+id = &"problems"
+text = "[b][color=red]PROBLEMI?![/color][/b] 
+[i]boss music intesifies[/i]"
+next = &"end"
+
+[sub_resource type="Resource" id="Resource_x55af"]
+script = ExtResource("1_lymu3")
+id = &"spared"
+text = "Mh. Per stavolta passi, perchè effettivamente amo ciucciare le palle"
+sets = ExtResource("3_ytilp")
+next = &"end"
+
+[resource]
+script = ExtResource("4_kunq5")
+lines = Array[ExtResource("1_lymu3")]([SubResource("Resource_k2kit"), SubResource("Resource_j86su"), SubResource("Resource_7ogtn"), SubResource("Resource_xsqm4"), SubResource("Resource_x55af")])

@@ -5,10 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://dof5f2r38qp0w" path="res://scenes/boss_fight/dating_sim/zoom.tscn" id="3_03dbd"]
 [ext_resource type="PackedScene" uid="uid://cf5u82pp0lkda" path="res://scenes/boss_fight/dating_sim/dating_sim_ui.tscn" id="4_5w81c"]
 [ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="5_03dbd"]
+[ext_resource type="PackedScene" path="res://scenes/boss_fight/dating_sim/conversation_view.tscn" id="6_view"]
+[ext_resource type="Script" uid="uid://dq4jhsrut7imi" path="res://scripts/core/story_flag_resource.gd" id="7_flag"]
+[ext_resource type="Resource" uid="uid://dq4sc3m440md1" path="res://resources/enemies/test_enemy_weaknesses/lost_tournament.tres" id="8_lost"]
 
 [node name="Node2D" type="Node2D" unique_id=20812623]
 script = ExtResource("1_rm0nm")
 enemy = ExtResource("2_5w81c")
+debug_flags = Array[ExtResource("7_flag")]([ExtResource("8_lost")])
 
 [node name="Control" parent="." unique_id=319535154 instance=ExtResource("3_03dbd")]
 visible = false
@@ -18,16 +22,12 @@ offset_right = 69.0
 offset_bottom = 90.0
 mouse_filter = 1
 
-[node name="Label" type="Label" parent="." unique_id=1555163818]
-offset_left = 138.0
-offset_top = 142.0
-offset_right = 254.0
-offset_bottom = 165.0
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1211127733]
 
 [node name="Control" parent="CanvasLayer" unique_id=1034871017 instance=ExtResource("4_5w81c")]
 mouse_filter = 2
+
+[node name="ConversationView" parent="CanvasLayer" instance=ExtResource("6_view")]
 
 [node name="Sasaki" type="Sprite2D" parent="." unique_id=1564988327]
 self_modulate = Color(1, 0, 1, 1)

@@ -8,7 +8,7 @@ extends Resource
 @export var enemy_sprite: Texture2D
 
 ##Scene used in the left side of the dating sim
-##In here we should find an EnemyDatingSimManager node, a Sprite2D of the enemy, and DatingSimArea Area2Ds
+##In here we should find a Sprite2D of the enemy's face and the WeaknessSpot Area2Ds that Sasaki can point out
 @export var enemy_dating_sim_closeup_scene: PackedScene
 
 ##Sprite used in the right side of the dating sim
@@ -22,3 +22,6 @@ extends Resource
 
 ##Weaknesses of this enemy, discovered in the dating sim or told by NPCs during exploration
 @export var weaknesses: Array[Weakness]
+
+##Conversation with Sasaki in the dating sim
+@export var conversation: DialogueResource

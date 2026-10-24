@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://pvqeh31h5o4b"]
 
-[ext_resource type="Script" uid="uid://cfkffc4tgsu8h" path="res://scripts/boss_fight/dating_sim/enemy_dating_sim_closeup.gd" id="1_njn5t"]
 [ext_resource type="Texture2D" uid="uid://ba77w8eu5ci68" path="res://icon.svg" id="2_xlanp"]
-[ext_resource type="Script" uid="uid://dwxh1th2edjmb" path="res://scripts/boss_fight/dating_sim/dating_sim_area.gd" id="3_wvh3h"]
+[ext_resource type="Script" uid="uid://mdfhdewns7mh" path="res://scripts/boss_fight/dating_sim/weakness_spot.gd" id="3_spot"]
+[ext_resource type="Script" uid="uid://ckolqbp4prihy" path="res://scripts/boss_fight/dating_sim/reaction_resource.gd" id="4_react"]
+[ext_resource type="Resource" uid="uid://4yc8lk2bty7s" path="res://resources/enemies/test_enemy_weaknesses/cross_eyed.tres" id="5_eyes"]
+[ext_resource type="Resource" uid="uid://cfr21hfo8fhpt" path="res://resources/enemies/test_enemy_weaknesses/crooked_teeth.tres" id="6_teeth"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g1q0"]
 size = Vector2(16, 21)
@@ -10,36 +12,60 @@ size = Vector2(16, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(13, 12)
 
+[sub_resource type="Resource" id="Reaction_eyes_known"]
+script = ExtResource("4_react")
+lines = Array[String](["Non è strabismo, è visione periferica!"])
+ego_change = -1
+
+[sub_resource type="Resource" id="Reaction_eyes_guessed"]
+script = ExtResource("4_react")
+lines = Array[String](["Come ti permetti?!", "Nessuno parla dei miei occhi."])
+ego_change = 1
+
+[sub_resource type="Resource" id="Reaction_teeth_known"]
+script = ExtResource("4_react")
+lines = Array[String](["Franco?! Quel capibara traditore!", "...Sono storti solo un pochino."])
+ego_change = -2
+
+[sub_resource type="Resource" id="Reaction_nose_guessed"]
+script = ExtResource("4_react")
+lines = Array[String](["Ahah! Me lo dicono tutti.", "Ne vado fiero!"])
+ego_change = 1
+
 [node name="Node2D" type="Node2D" unique_id=1028485846]
-script = ExtResource("1_njn5t")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=123446120]
 position = Vector2(52, 77)
 scale = Vector2(0.555, 1)
 texture = ExtResource("2_xlanp")
 
-[node name="DatingSimArea" type="Area2D" parent="." unique_id=1999879013]
+[node name="EyesSpot" type="Area2D" parent="." unique_id=1999879013]
 position = Vector2(40, 78)
-script = ExtResource("3_wvh3h")
-text_line = "Strabico!"
+script = ExtResource("3_spot")
+weakness = ExtResource("5_eyes")
+point_out_text = "Hai uno sguardo... particolare. Guardi me o la porta?"
+reaction_if_known = SubResource("Reaction_eyes_known")
+reaction_if_guessed = SubResource("Reaction_eyes_guessed")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DatingSimArea" unique_id=911387453]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EyesSpot" unique_id=911387453]
 shape = SubResource("RectangleShape2D_5g1q0")
 
-[node name="DatingSimArea2" type="Area2D" parent="." unique_id=642388694]
+[node name="TeethSpot" type="Area2D" parent="." unique_id=642388694]
 position = Vector2(62, 102)
-script = ExtResource("3_wvh3h")
-text_line = "Denti storti!"
-metadata/_custom_type_script = "uid://dwxh1th2edjmb"
+script = ExtResource("3_spot")
+weakness = ExtResource("6_teeth")
+hidden_until_known = true
+point_out_text = "Franco mi ha parlato dei tuoi denti..."
+reaction_if_known = SubResource("Reaction_teeth_known")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DatingSimArea2" unique_id=1265062590]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeethSpot" unique_id=1265062590]
 shape = SubResource("RectangleShape2D_g4v7s")
 
-[node name="DatingSimArea3" type="Area2D" parent="." unique_id=304537414]
+[node name="NoseSpot" type="Area2D" parent="." unique_id=304537414]
 position = Vector2(54, 94)
-script = ExtResource("3_wvh3h")
-text_line = "Prova"
-metadata/_custom_type_script = "uid://dwxh1th2edjmb"
+script = ExtResource("3_spot")
+point_out_text = "Che naso importante."
+reaction_if_guessed = SubResource("Reaction_nose_guessed")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DatingSimArea3" unique_id=1890192177]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NoseSpot" unique_id=1890192177]
 shape = SubResource("RectangleShape2D_g4v7s")

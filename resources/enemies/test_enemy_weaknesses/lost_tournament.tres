@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Weakness" format=3 uid="uid://dq4sc3m440md1"]
+
+[ext_resource type="Script" uid="uid://cpq28n3ihmcva" path="res://scripts/boss_fight/weakness_resource.gd" id="1_tyjen"]
+
+[resource]
+script = ExtResource("1_tyjen")
+display_name = "Ha perso il torneo di primavera"
+id = &"test_enemy_lost_tournament"
+description = "Test enemy: something from his past. Unlocks an answer in the dating sim conversation."
