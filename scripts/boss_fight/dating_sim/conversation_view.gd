@@ -8,8 +8,18 @@ extends Control
 ## (click on the dialogue box, or the "accept" key).
 
 @export var chars_per_sec := 40.0
+## Shown instead of a locked answer: the player sees it's there, not what it says.
+@export var locked_answer_text := "???"
 ## Where the bubble appears, relative to the clicked spot.
 @export var bubble_offset := Vector2(6, -6)
+
+@export_group("Known from exploration")
+## Bubble style for a spot whose weakness the player already knows (a sure hit).
+## Empty = same style as the other bubbles.
+@export var known_bubble_style: StyleBox
+## Put in front of answers unlocked by something learned during exploration.
+@export var known_answer_mark := "! "
+@export var known_answer_color := Color(1, 0.8, 0.3)
 
 @onready var text_box: Control = $TextBox
 @onready var name_label: Label = %NameLabel
@@ -19,16 +29,20 @@ extends Control
 @onready var bubble: Control = $Bubble
 @onready var bubble_text: Label = %BubbleText
 @onready var say_button: Button = %SayButton
+@onready var known_icon: Control = %KnownIcon
 
 var _conversation: BossConversation
 # Speaker -> name shown above the text
 var _names := {}
 var _type_tween: Tween
 var _bubble_spot: WeaknessSpot
+# The bubble's normal style, taken from the scene, to go back to it
+var _bubble_style: StyleBox
 
 func _ready() -> void:
 	text_box.hide()
 	bubble.hide()
+	_bubble_style = bubble.get_theme_stylebox("panel")
 	text_label.bbcode_enabled = true
 	text_label.scroll_active = false
 	text_box.gui_input.connect(_on_text_box_input)
@@ -52,6 +66,11 @@ func show_bubble(spot: WeaknessSpot) -> void:
 		return
 	_bubble_spot = spot
 	bubble_text.text = spot.point_out_text
+	# a weakness learned during exploration: different style and a mark, so the
+	# player knows this is a sure hit (same check that picks the reaction)
+	var known := spot.is_known()
+	bubble.add_theme_stylebox_override("panel", known_bubble_style if known and known_bubble_style else _bubble_style)
+	known_icon.visible = known
 	bubble.reset_size()
 	var pos := spot.get_global_transform_with_canvas().origin + bubble_offset
 	# keep it on screen
@@ -127,8 +146,14 @@ func _on_responses_shown(responses: Array[DialogueResponseResource], available: 
 	var first: Button
 	for i in responses.size():
 		var button := Button.new()
-		button.text = responses[i].text
+		button.text = responses[i].text if available[i] else locked_answer_text
 		button.disabled = not available[i]
+		# unlocked thanks to a flag = something learned during exploration
+		if available[i] and responses[i].requires != null:
+			button.text = known_answer_mark + button.text
+			button.add_theme_color_override("font_color", known_answer_color)
+			button.add_theme_color_override("font_hover_color", known_answer_color)
+			button.add_theme_color_override("font_focus_color", known_answer_color)
 		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
 		button.add_theme_font_size_override("font_size", 6)

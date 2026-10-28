@@ -14,6 +14,8 @@ const COLOR_TEXT_DISABLED := Color(0.45, 0.45, 0.45)
 const COLOR_BAR := Color(0.0, 0.656, 0.818, 1.0)
 
 @export var chars_per_sec = 40.0
+## Testo mostrato al posto di una scelta bloccata: si vede che c'è, non cosa dice
+@export var locked_choice_text := "???"
 @onready var dialog_manager: CanvasLayer = $"."
 @onready var dialog_box: Control = $DialogBox
 @onready var name_label: Label = $DialogBox/NameLabel
@@ -165,7 +167,7 @@ func _make_choice_button(text: String) -> Button:
 	return b
 
 # Crea e mostra i pulsanti delle scelte. Le scelte senza il flag richiesto
-# compaiono disabilitate (visibili ma non selezionabili).
+# compaiono disabilitate e con il testo nascosto (locked_choice_text).
 # Ritorna false se nessuna scelta è disponibile: il dialogo prosegue normalmente.
 func _show_choices(responses: Array[DialogueResponseResource]) -> bool:
 	var first: Button
@@ -173,6 +175,7 @@ func _show_choices(responses: Array[DialogueResponseResource]) -> bool:
 	for response in responses:
 		var b := _make_choice_button(response.text)
 		if response.requires and not GameState.has_flag(response.requires):
+			b.text = locked_choice_text
 			b.disabled = true
 			b.focus_mode = Control.FOCUS_NONE
 		else:
