@@ -17,12 +17,12 @@ next = &"sorry"
 
 [sub_resource type="Resource" id="Resource_p02an"]
 script = ExtResource("2_6tcx1")
-text = "Negro! Ma che problemi hai?"
+text = "Vuoi problemi?"
 next = &"problems"
 
 [sub_resource type="Resource" id="Resource_xuwr8"]
 script = ExtResource("2_6tcx1")
-text = "Hai ragione, scusa ciucciapalle"
+text = "Ho bisogno di aiuto per sconfiggere il samurai"
 next = &"spared"
 
 [sub_resource type="Resource" id="Resource_j86su"]
@@ -46,10 +46,16 @@ next = &"end"
 [sub_resource type="Resource" id="Resource_x55af"]
 script = ExtResource("1_lymu3")
 id = &"spared"
-text = "Mh. Per stavolta passi, perchè effettivamente amo ciucciare le palle"
+text = "Mh. devi sapere che questo tizio è davvero... particolare"
+next = &"reveal"
+
+[sub_resource type="Resource" id="Resource_k1crc"]
+script = ExtResource("1_lymu3")
+id = &"reveal"
+text = "Una cosa che ti so dire è che ha dei denti da schifo"
 sets = ExtResource("3_ytilp")
-next = &"end"
+metadata/_custom_type_script = "uid://cufvsmf7uo5ib"
 
 [resource]
 script = ExtResource("4_kunq5")
-lines = Array[ExtResource("1_lymu3")]([SubResource("Resource_k2kit"), SubResource("Resource_j86su"), SubResource("Resource_7ogtn"), SubResource("Resource_xsqm4"), SubResource("Resource_x55af")])
+lines = Array[ExtResource("1_lymu3")]([SubResource("Resource_k2kit"), SubResource("Resource_j86su"), SubResource("Resource_7ogtn"), SubResource("Resource_xsqm4"), SubResource("Resource_x55af"), SubResource("Resource_k1crc")])

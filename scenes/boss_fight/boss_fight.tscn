@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bjutesw6ussvc"]
+
+[ext_resource type="Script" uid="uid://cfv8c56pbo1ac" path="res://scripts/boss_fight/boss_fight.gd" id="1_fight"]
+[ext_resource type="Resource" uid="uid://id01miunulxs" path="res://resources/enemies/test_enemy.tres" id="2_boss"]
+[ext_resource type="Script" uid="uid://dq4jhsrut7imi" path="res://scripts/core/story_flag_resource.gd" id="3_flag"]
+[ext_resource type="Resource" uid="uid://dq4sc3m440md1" path="res://resources/enemies/test_enemy_weaknesses/lost_tournament.tres" id="4_lost"]
+
+[node name="BossFight" type="Node" unique_id=1847588972]
+script = ExtResource("1_fight")
+debug_boss = ExtResource("2_boss")
+debug_flags = Array[ExtResource("3_flag")]([ExtResource("4_lost")])

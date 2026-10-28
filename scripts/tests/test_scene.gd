@@ -12,6 +12,7 @@ var enemy_health: float = 10
 var enemy_max_health: int = 10
 var player_health: float = 10
 var player_max_health: int = 10
+var _versus: Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,6 +31,7 @@ func _on_button_pressed() -> void:
 	#Instantiate the versus interface and connect its signals
 	var versus_scene = preload("res://scenes/boss_fight/face_to_face/versus_interface.tscn")
 	var instance = versus_scene.instantiate()
+	_versus = instance
 	add_child(instance)
 	instance.versus_lost.connect(_on_versus_lost)
 	instance.dialogue_chosen.connect(_on_dialogue_chosen)
@@ -40,6 +42,8 @@ func _on_button_pressed() -> void:
 func _on_versus_lost() -> void:
 	#Resume the tree and apply the debuffs on Progress bar depletion 
 	get_tree().paused = false
+	#The versus no longer removes itself: whoever adds it removes it
+	_versus.queue_free()
 	player_health -= 3
 	update_health_bar()
 		
@@ -51,4 +55,5 @@ func _on_dialogue_chosen(dialogue: String) -> void:
 	#Resume the tree after dialogue is chosen.
 	#Can also pass on which one was chosen ("left", "right" or 0 and 1) to have buffs and debuffs assigned accordingly.
 	get_tree().paused = false
+	_versus.queue_free()
 	label.text = dialogue

@@ -8,14 +8,18 @@
 [ext_resource type="Resource" uid="uid://cfr21hfo8fhpt" path="res://resources/enemies/test_enemy_weaknesses/crooked_teeth.tres" id="5_53x8g"]
 [ext_resource type="Resource" uid="uid://dq4sc3m440md1" path="res://resources/enemies/test_enemy_weaknesses/lost_tournament.tres" id="6_lost"]
 [ext_resource type="Resource" uid="uid://dfkkic3xf11vt" path="res://resources/enemies/test_enemy_conversation.tres" id="7_talk"]
+[ext_resource type="Resource" uid="uid://dutenqm5kgcuq" path="res://resources/flags/test_enemy_defeated.tres" id="8_defeated"]
+[ext_resource type="PackedScene" uid="uid://t14fq1bceh4p" path="res://scenes/boss_fight/grid/enemy_grid.tscn" id="9_grid_enemy"]
 
 [resource]
 script = ExtResource("2_mru0m")
 enemy_name = "Test"
 enemy_sprite = ExtResource("1_jy53r")
 enemy_dating_sim_closeup_scene = ExtResource("1_mru0m")
+grid_enemy_scene = ExtResource("9_grid_enemy")
 full_enemy_sprite = ExtResource("1_jy53r")
-enemy_health = 10.0
+enemy_health = 60
 enemy_strength = 50
 weaknesses = Array[ExtResource("3_lbsk5")]([ExtResource("4_msf4r"), ExtResource("5_53x8g"), ExtResource("6_lost")])
 conversation = ExtResource("7_talk")
+defeated_flag = ExtResource("8_defeated")

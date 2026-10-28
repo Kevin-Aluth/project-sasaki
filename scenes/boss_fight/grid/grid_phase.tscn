@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bokqap6ack13o"]
+
+[ext_resource type="Script" uid="uid://b1pordi0vkrld" path="res://scripts/boss_fight/grid/grid_phase.gd" id="1_phase"]
+[ext_resource type="Resource" uid="uid://id01miunulxs" path="res://resources/enemies/test_enemy.tres" id="2_boss"]
+[ext_resource type="Script" uid="uid://na2mylggdgnd" path="res://scripts/boss_fight/grid/grid_manager.gd" id="3_grid"]
+[ext_resource type="PackedScene" uid="uid://d2d5y15ien3g8" path="res://scenes/boss_fight/grid/sasaki_grid.tscn" id="4_player"]
+
+[node name="GridPhase" type="Node2D" unique_id=507787723]
+script = ExtResource("1_phase")
+debug_boss = ExtResource("2_boss")
+
+[node name="GridManager" type="Node2D" parent="." unique_id=426727830]
+position = Vector2(33, 19)
+script = ExtResource("3_grid")
+cell_size = 30
+
+[node name="Player" parent="GridManager" unique_id=96444651 instance=ExtResource("4_player")]
