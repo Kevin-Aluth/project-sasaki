@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://t14fq1bceh4p"]
+
+[ext_resource type="Script" uid="uid://du4ut1j15eklm" path="res://scripts/boss_fight/grid/enemy_grid.gd" id="1_brain"]
+[ext_resource type="PackedScene" uid="uid://bqgyimr1m72dl" path="res://scenes/boss_fight/grid/attacks/enemy_basic_hit.tscn" id="2_hit"]
+[ext_resource type="SpriteFrames" uid="uid://cpsta2ow5nouq" path="res://sprites/characters/slime_frames.tres" id="3_frames"]
+[ext_resource type="Script" uid="uid://ip262ml80i7i" path="res://scripts/components/health_component.gd" id="4_health"]
+[ext_resource type="Script" uid="uid://m16mg23vt5d4" path="res://scripts/components/hurtbox_component.gd" id="5_hurtbox"]
+[ext_resource type="Script" uid="uid://duqhsitvasu2o" path="res://scripts/boss_fight/grid/grid_mover.gd" id="6_mover"]
+[ext_resource type="Script" uid="uid://d3vv2n1113rge" path="res://scripts/components/character_animator.gd" id="7_animator"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
+size = Vector2(20, 24)
+
+[node name="EnemyGrid" type="Node2D"]
+script = ExtResource("1_brain")
+attack_scene = ExtResource("2_hit")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6)
+sprite_frames = ExtResource("3_frames")
+animation = &"idle_side"
+autoplay = "idle_side"
+flip_h = true
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_health")
+max_health = 50
+
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("5_hurtbox")
+health = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_hurt")
+
+[node name="GridMover" type="Node" parent="."]
+script = ExtResource("6_mover")
+start_cell = Vector2i(6, 2)
+facing = Vector2i(-1, 0)
+
+[node name="CharacterAnimator" type="Node" parent="."]
+script = ExtResource("7_animator")

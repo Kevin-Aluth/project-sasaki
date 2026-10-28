@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://dtvsx7ukgsw33"]
 
-[ext_resource type="PackedScene" path="res://scenes/boss_fight/grid/attacks/cell_attack.tscn" id="1_base"]
+[ext_resource type="PackedScene" uid="uid://u6p2omx1eciq" path="res://scenes/boss_fight/grid/attacks/cell_attack.tscn" id="1_base"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lymu3"]
 
 [node name="PlayerBasicHit" unique_id=1826879402 instance=ExtResource("1_base")]
 warning_time = 0.0
 active_color = Color(0.2, 0.6, 1, 0.7)
 
-[node name="Hitbox" parent="." index="0"]
+[node name="Hitbox" parent="." index="0" unique_id=532711891]
 collision_layer = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=800390126]
+shape = SubResource("CircleShape2D_lymu3")

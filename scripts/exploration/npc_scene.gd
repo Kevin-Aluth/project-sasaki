@@ -2,21 +2,9 @@ extends Node2D
 
 @export var npc_name := "Franco"
 @export var portrait: Texture2D
-
-var lines: Array[Dictionary] = [
-	{"who": "player", "text": "Capibara?!"}, #0
-	{"who": "npc",  #1
-		"text": "Oh! Ma come ti permetti, io sono Franco. Cazzo vuoi?",
-		"choices": [
-			{"text": "Scusa, me ne vado", "next": 2},
-			{"text": "Negro! Ma che problemi hai?", "next": 3},
-			{"text": "Hai ragione, scusa ciucciapalle", "next": 4},
-		]
-	},
-	{"who": "npc", "text": "Non ti scuso, cogliona. Vattene!", "next": -1},
-	{"who": "npc", "text": "[b][color=red]PROBLEMI?![/color][/b] \n[i]boss music intesifies[/i]", "next": -1},
-	{"who": "npc", "text": "Mh. Per stavolta passi, perchè effettivamente amo ciucciare le palle", "next": -1},
-]
+## What this NPC says (a .tres made of DialogueLineResources). Flags to unlock
+## go on the lines themselves ("Sets"), not here.
+@export var dialogue: DialogueResource
 
 @onready var interact_area: Area2D = $Sprite2D/InteractArea
 @onready var prompt: Label = $Sprite2D/Prompt
@@ -67,20 +55,11 @@ func _input(event: InputEvent) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if _player and not _dialog_open and event.is_action_pressed("interact"):
 		get_viewport().set_input_as_handled()
-		DialogueManager.start(_build_lines())
+		_talk()
 
-func _build_lines() -> Array:
-	var out := []
-	for l in lines:
-		var is_player: bool = l.get("who", "npc") == "player"
-		var entry := {
-			"name": _player.character_name if is_player else npc_name,
-			"portrait": _player.portrait if is_player else portrait,
-			"text": l.get("text", "")
-		}
-		if l.has("choices"):
-			entry["choices"] = l["choices"]
-		if l.has("next"):
-			entry["next"] = l["next"]
-		out.append(entry)
-	return out
+# Starts the dialogue, telling DialogueManager who is who
+func _talk() -> void:
+	DialogueManager.start(dialogue, {
+		DialogueLineResource.Speaker.OTHER: {"name": npc_name, "portrait": portrait},
+		DialogueLineResource.Speaker.SASAKI: {"name": _player.character_name, "portrait": _player.portrait},
+	})

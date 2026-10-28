@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="StoryFlag" format=3 uid="uid://dutenqm5kgcuq"]
+
+[ext_resource type="Script" uid="uid://dq4jhsrut7imi" path="res://scripts/core/story_flag_resource.gd" id="1_pjiqk"]
+
+[resource]
+script = ExtResource("1_pjiqk")
+id = &"test_enemy_defeated"
+description = "Unlocked when the test enemy is defeated in the boss fight."
